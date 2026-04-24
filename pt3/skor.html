@@ -7,6 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(16, 24, 40, 0.6); backdrop-filter: blur(6px);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1; pointer-events: auto;
+        }
+        .modal-card {
+            background: #ffffff; width: 85%; max-width: 360px;
+            border-radius: 24px; box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+            transform: translateY(30px) scale(0.95); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-height: 90vh; overflow-y: auto; /* Mencegah terpotong di layar kecil */
+        }
+        .modal-overlay.active .modal-card {
+            transform: translateY(0) scale(1);
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -113,7 +133,7 @@
                     <div class="chip-glass">Siap Diajukan</div>
                 </div>
                 
-                <div class="position-relative">
+                <div class="position-relative" >
                     <p class="text-xs text-light-80 mb-1">Estimasi Plafon Pinjaman Maksimal:</p>
                     <h2 class="mb-1" style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;">Rp 15.000.000</h2>
                     
@@ -126,19 +146,69 @@
                     </div>
                 </div>
                 
-                <a href="#" class="btn-massive bg-white text-primary ripple position-relative" style="font-size: 0.95rem; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <button onclick="openSimulasi()" style="width: 100%; padding: 14px; background: #0A4CF6; color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 16px;">
                     Ajukan Pembiayaan Sekarang <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                </button>
                 <div class="text-center position-relative mt-3">
                     <p class="text-xs text-light-80">Terintegrasi resmi dengan:</p>
                     <div class="flex-align flex-justify-center mt-1" style="justify-content: center; gap: 15px; opacity: 0.9;">
-                        <span class="font-bold text-xs"><i class="fa-solid fa-building-columns"></i> Bank Himbara</span>
+                        <span class="font-bold text-xs"><i class="fa-solid fa-building-columns"></i> Bank BCA</span>
                         <span class="font-bold text-xs"><i class="fa-solid fa-hand-holding-dollar"></i> KUR Mikro</span>
                     </div>
                 </div>
             </div>
-
         </main>
+
+        <div id="simulasi-modal" class="modal-overlay">
+            <div class="modal-card" style="max-width: 360px; padding: 24px;">
+                <div class="flex-between mb-3" style="border-bottom: 1px solid #F2F4F7; padding-bottom: 12px;">
+                    <h3 class="font-bold text-sm">Simulasi & Pengajuan</h3>
+                    <button class="ripple" onclick="closeSimulasi()" style="width: 30px; height: 30px; background: #FFF0F0; color: #FF3B30; border: none; border-radius: 50%; cursor: pointer;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                
+                <div style="background: #F4F7FF; padding: 12px; border-radius: 12px; margin-bottom: 16px; border: 1px solid #D0DFFF;">
+                    <p class="text-xs text-muted mb-1">Sesuai Skor AI Anda: <strong class="text-primary">720 (Grade A)</strong></p>
+                    <p class="text-sm font-bold">Plafon Maksimal: Rp 15.000.000</p>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-xs font-bold text-muted" style="display:block; margin-bottom: 4px;">Nominal Pinjaman</label>
+                    <select id="simulasi-nominal" onchange="hitungCicilan()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #E4E7EC; outline: none; font-family: inherit;">
+                        <option value="5000000">Rp 5.000.000</option>
+                        <option value="10000000">Rp 10.000.000</option>
+                        <option value="15000000" selected>Rp 15.000.000</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="text-xs font-bold text-muted" style="display:block; margin-bottom: 4px;">Tenor (Bulan)</label>
+                    <select id="simulasi-tenor" onchange="hitungCicilan()" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #E4E7EC; outline: none; font-family: inherit;">
+                        <option value="12">12 Bulan</option>
+                        <option value="18">18 Bulan</option>
+                        <option value="24" selected>24 Bulan</option>
+                    </select>
+                </div>
+
+                <div style="background: #F9FAFB; padding: 16px; border-radius: 12px; margin-bottom: 16px; text-align: center; border: 1px dashed #D0DFFF;">
+                    <p class="text-xs text-muted mb-1">Estimasi Cicilan per Bulan</p>
+                    <h2 id="hasil-cicilan" class="font-bold text-primary" style="font-size: 1.5rem;">Rp 0</h2>
+                    <p class="text-xs text-muted mt-1" style="font-size: 0.65rem;">*Simulasi bunga ringan KUR (6% per tahun)</p>
+                </div>
+
+                <div style="background: #FFF4E5; padding: 12px; border-radius: 8px; margin-bottom: 16px; display: flex; gap: 8px; align-items: flex-start; border: 1px solid #FEF0C7;">
+                    <i class="fa-solid fa-circle-info text-warning mt-1"></i>
+                    <p style="font-size: 0.65rem; color: #B54708; line-height: 1.4; margin:0;">
+                        <strong>Tahap Pengembangan:</strong> Saat ini sistem sedang dalam tahap integrasi. Anda dapat menyatakan minat untuk dihubungkan dengan lembaga keuangan mitra.
+                    </p>
+                </div>
+
+                <button class="ripple" onclick="ajukanMitra()" style="width: 100%; padding: 12px; background: #12B76A; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-handshake"></i> Terhubung dengan Mitra
+                </button>
+            </div>
+        </div>
 
         <nav class="bottom-nav glass-nav">
             <div class="nav-indicator" style="transform: translateX(calc(70vw * 4.14 - 18px));"></div>
@@ -150,5 +220,36 @@
         </nav>
     </div>
     <script src="js/app.js"></script>
+    <script>
+            // Buka tutup modal
+            function openSimulasi() {
+                document.getElementById('simulasi-modal').classList.add('active');
+                hitungCicilan(); // Hitung otomatis saat pertama dibuka
+            }
+            function closeSimulasi() {
+                document.getElementById('simulasi-modal').classList.remove('active');
+            }
+
+            // Rumus perhitungan simulasi cicilan
+            function hitungCicilan() {
+                let nominal = parseInt(document.getElementById('simulasi-nominal').value);
+                let tenor = parseInt(document.getElementById('simulasi-tenor').value);
+                
+                // Simulasi bunga KUR 6% per tahun (0.5% per bulan)
+                let bungaPerBulan = 0.005; 
+                let totalPinjaman = nominal + (nominal * bungaPerBulan * tenor);
+                let cicilanBulan = totalPinjaman / tenor;
+                
+                // Ubah format angka jadi Rupiah (Rp x.xxx.xxx)
+                let formatRupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(cicilanBulan);
+                document.getElementById('hasil-cicilan').innerText = formatRupiah;
+            }
+
+            // Aksi tombol hubungkan mitra
+            function ajukanMitra() {
+                alert("Minat pengajuan berhasil direkam oleh sistem FinGrow!\n\nPada versi rilis, Anda akan langsung dihubungkan dengan Bank/Fintech penyedia pembiayaan.");
+                closeSimulasi();
+            }
+        </script>
 </body>
 </html>

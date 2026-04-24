@@ -189,3 +189,23 @@ function logout() {
     }
 }
 
+// Buka/Tutup Notifikasi
+        function toggleNotif() {
+            document.getElementById('notif-dropdown').classList.toggle('active');
+        }
+
+        // Tutup popup jika user klik area kosong di luar kotak
+        window.addEventListener('click', function(event) {
+            let notifModal = document.getElementById('notif-dropdown');
+            let notifBtn = document.getElementById('notif-btn');
+            let qrisModal = document.getElementById('qris-modal');
+            
+            // Logika tutup QRIS
+            if (event.target == qrisModal) { closeQRIS(); }
+            
+            // Logika tutup Notif
+            if (notifModal && !notifModal.contains(event.target) && !notifBtn.contains(event.target)) {
+                notifModal.classList.remove('active');
+            }
+        });
+        

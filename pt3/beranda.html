@@ -12,6 +12,18 @@
         .modal-overlay.active { opacity: 1; pointer-events: auto; }
         .modal-card { background: var(--surface-bg); width: 85%; max-width: 340px; border-radius: 24px; padding: 24px; box-shadow: 0 24px 48px rgba(0,0,0,0.2); transform: translateY(30px) scale(0.95); transition: all 0.4s ease; }
         .modal-overlay.active .modal-card { transform: translateY(0) scale(1); }
+        .notif-panel {
+            position: absolute; top: 75px; right: 24px; width: calc(100% - 48px); max-width: 320px;
+            background: #ffffff; border-radius: 20px; box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            padding: 16px; z-index: 101; opacity: 0; pointer-events: none;
+            transform: translateY(-15px); transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid #f2f4f7;
+        }
+        .notif-panel.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .notif-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-bottom: 1px solid #f2f4f7; }
+        .notif-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .notif-item.unread { background: #F4F7FF; border-radius: 12px; border-bottom: none; }
+        .notif-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -30,11 +42,50 @@
                 </div>
             </div>
             
-            <button class="icon-btn ripple" style="flex-shrink: 0; margin-left: auto;">
-                <i class="fa-regular fa-bell"></i>
-                <span class="badge-dot"></span>
+            <button id="notif-btn" class="icon-btn ripple" onclick="toggleNotif()" style="background: #f2f4f7; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer;">
+                <i class="fa-regular fa-bell" style="font-size: 1.2rem; color: #475467; pointer-events: none;"></i>
+                <span class="badge-dot" style="position: absolute; top: 10px; right: 10px; background: #ff3b30; width: 8px; height: 8px; border-radius: 50%; border: 2px solid #fff; pointer-events: none;"></span>
             </button>
         </header>
+
+        <div id="notif-dropdown" class="notif-panel">
+            <div class="flex-between mb-3 border-bottom pb-2">
+                <h3 class="font-bold text-sm">Notifikasi</h3>
+                <span class="text-xs text-primary cursor-pointer font-bold" onclick="toggleNotif()">Tutup</span>
+            </div>
+            
+            <div class="notif-list">
+                <div class="notif-item unread mb-2">
+                    <div class="notif-icon bg-success-light text-success"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div>
+                        <p class="text-sm font-bold" style="margin-bottom: 2px;">Pembayaran QRIS Berhasil</p>
+                        <p class="text-xs text-muted">Dana Rp 65.000 dari Sdr. Budi telah masuk ke saldo utama.</p>
+                        <p class="text-xs font-bold text-muted mt-1" style="font-size: 0.6rem;">Baru saja</p>
+                    </div>
+                </div>
+
+                <div class="notif-item">
+                    <div class="notif-icon" style="background: #FFF4E5; color: #F79009;"><i class="fa-solid fa-bullseye"></i></div>
+                    <div>
+                        <p class="text-sm font-bold" style="margin-bottom: 2px;">Target Hampir Tercapai!</p>
+                        <p class="text-xs text-muted">Kurang Rp 550.000 lagi untuk mencapai target omzet harian Anda.</p>
+                        <p class="text-xs font-bold text-muted mt-1" style="font-size: 0.6rem;">2 jam yang lalu</p>
+                    </div>
+                </div>
+
+                <div class="notif-item">
+                    <div class="notif-icon" style="background: #E8F9EE; color: #25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <p class="text-sm font-bold" style="margin-bottom: 2px;">Laporan Harian Dikirim</p>
+                        <p class="text-xs text-muted">Rekap transaksi kemarin telah dikirimkan via WhatsApp.</p>
+                        <p class="text-xs font-bold text-muted mt-1" style="font-size: 0.6rem;">Kemarin, 21:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-3 pt-2" style="border-top: 1px solid #f2f4f7;">
+                <span class="text-xs font-bold text-primary cursor-pointer">Tandai semua dibaca</span>
+            </div>
+        </div>
 
         <main class="content-area">
             
@@ -63,15 +114,15 @@
                 <div class="flex-between position-relative mt-2">
                     <div class="flex-align">
                         <div class="text-center" style="border-right: 1px solid rgba(255,255,255,0.2); padding-right: 15px;">
-                            <p class="text-light-50" style="font-size: 0.65rem; font-weight: 800;">TRANSAKSI</p>
-                            <p class="font-bold" id="beranda-jml-trx">12</p>
+                            <p class="text-light-50" style="font-size: 0.6rem; font-weight: 800;">TRANSAKSI</p>
+                            <p class="font-bold" id="beranda-jml-trx" style="font-size: 0.8rem;">12</p>
                         </div>
                         <div style="padding-left: 15px;">
-                            <p class="text-light-50" style="font-size: 0.65rem; font-weight: 800;">METODE UTAMA</p>
-                            <p class="font-bold"><i class="fa-solid fa-qrcode" style="font-size: 0.75rem;"></i> QRIS (8)</p>
+                            <p class="text-light-50" style="font-size: 0.6rem; font-weight: 800;">METODE UTAMA</p>
+                            <p class="font-bold" style="font-size: 0.8rem;"><i class="fa-solid fa-qrcode" style="font-size: 0.75rem;"></i> QRIS (8)</p>
                         </div>
                     </div>
-                    <a href="transaksi.html" class="btn-sm-glass ripple" style="text-decoration:none;">Detail <i class="fa-solid fa-chevron-right"></i></a>
+                    <a href="transaksi.html" class="btn-sm-glass ripple" style="text-decoration:none; font-size: 1rem;">Detail <i class="fa-solid fa-chevron-right"></i></a>
                 </div>
             </div>
 
