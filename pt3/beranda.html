@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - FinGrow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="app-header glass-header" style="display: flex; justify-content: space-between; align-items: center; padding: 24px 24px 16px;">
+            <div class="user-info" style="display: flex; align-items: center; gap: 12px;">
+                <div class="avatar-glow">
+                    <div class="avatar bg-gradient">SZ</div>
+                </div>
+                <div>
+                    <p class="text-xs text-muted font-bold" style="letter-spacing: 1px; margin-bottom: 2px;">SELAMAT DATANG</p>
+                    <h2 class="shop-name" style="margin: 0; font-size: 1.3rem;">Toko Sembako Berkah</h2>
+                </div>
+            </div>
+            
+            <button class="icon-btn ripple" style="flex-shrink: 0; margin-left: auto;">
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge-dot"></span>
+            </button>
+        </header>
+
+        <main class="content-area">
+            
+            <div class="card premium-card ripple">
+                <div class="card-bg-shape"></div>
+                
+                <div class="flex-between mb-1 position-relative">
+                    <span class="text-light-50 font-bold text-xs" style="letter-spacing: 1px;">OMZET HARI INI</span>
+                    <div class="chip-glass"><i class="fa-solid fa-chart-line"></i> +12.5%</div>
+                </div>
+                
+                <h1 class="balance-amount position-relative">Rp <span id="counter-saldo">0</span></h1>
+                
+                <div class="position-relative mt-2 mb-3">
+                    <div class="flex-between text-xs mb-1">
+                        <span class="text-light-80">Target Harian: Rp 1.000.000</span>
+                        <span class="text-light-80" id="target-percent">65%</span>
+                    </div>
+                    <div class="progress-bar" style="background: rgba(255,255,255,0.2); height: 6px;">
+                        <div class="progress-fill bg-white" id="bar-target-harian" style="width: 65%;"></div>
+                    </div>
+                </div>
+
+                <div class="divider-glass position-relative"></div>
+
+                <div class="flex-between position-relative mt-2">
+                    <div class="flex-align">
+                        <div class="text-center" style="border-right: 1px solid rgba(255,255,255,0.2); padding-right: 15px;">
+                            <p class="text-light-50" style="font-size: 0.65rem; font-weight: 800;">TRANSAKSI</p>
+                            <p class="font-bold" id="beranda-jml-trx">12</p>
+                        </div>
+                        <div style="padding-left: 15px;">
+                            <p class="text-light-50" style="font-size: 0.65rem; font-weight: 800;">METODE UTAMA</p>
+                            <p class="font-bold"><i class="fa-solid fa-qrcode" style="font-size: 0.75rem;"></i> QRIS (8)</p>
+                        </div>
+                    </div>
+                    <a href="transaksi.html" class="btn-sm-glass ripple" style="text-decoration:none;">Detail <i class="fa-solid fa-chevron-right"></i></a>
+                </div>
+            </div>
+
+            <div class="card score-card ripple" onclick="location.href='skor.html'">
+                <div class="score-left">
+                    <div class="score-ring">
+                        <svg viewBox="0 0 36 36" class="circular-chart primary">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke: #EBF1FF; stroke-width: 2.5; fill: none;" />
+                            <path id="ai-score-ring" class="circle" stroke-dasharray="72, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke: #0A4CF6; stroke-width: 2.5; stroke-linecap: round; fill: none; transition: stroke-dasharray 1.5s ease-in-out;" />
+                        </svg>
+                        <div class="score-value" id="ai-score-display">720</div>
+                    </div>
+                </div>
+                <div class="score-right">
+                    <div class="flex-between">
+                        <h3 class="font-bold text-md">Credit Score AI</h3>
+                        <span class="text-xs text-success font-bold">Grade A</span>
+                    </div>
+                    <p class="text-xs text-muted mt-1">Status usaha Anda <b>Sangat Layak</b> untuk pengajuan modal KUR.</p>
+                    <div class="progress-bar mt-2" style="height: 4px;"><div class="progress-fill bg-success" style="width: 72%;"></div></div>
+                </div>
+            </div>
+
+            <div class="section-header flex-between mb-2">
+                <h3 class="font-bold text-sm">Insight FinGrow AI</h3>
+                <a href="insight.html" class="text-xs text-primary font-bold" style="text-decoration:none;">Analisis Lengkap</a>
+            </div>
+            
+            <div class="insight-grid">
+                <div class="card insight-mini-card ripple">
+                    <i class="fa-solid fa-arrow-trend-up text-success mb-1"></i>
+                    <p class="text-xs font-bold">Tren Naik</p>
+                    <p class="text-muted" style="font-size: 0.65rem;">Omzet meningkat 15% dari pekan lalu.</p>
+                </div>
+                <div class="card insight-mini-card ripple">
+                    <i class="fa-solid fa-calendar-check text-primary mb-1"></i>
+                    <p class="text-xs font-bold">Konsistensi</p>
+                    <p class="text-muted" style="font-size: 0.65rem;">14 hari aktif mencatat tanpa jeda.</p>
+                </div>
+            </div>
+
+            <h3 class="font-bold text-sm mb-2">Akses Cepat</h3>
+            <div class="quick-action-grid">
+                <a href="transaksi.html" class="action-item ripple">
+                    <div class="action-icon bg-brand-light text-primary"><i class="fa-solid fa-plus"></i></div>
+                    <span>Catat Trx</span>
+                </a>
+                <a href="#" class="action-item ripple">
+                    <div class="action-icon bg-success-light text-success"><i class="fa-solid fa-qrcode"></i></div>
+                    <span>QRIS Toko</span>
+                </a>
+                <a href="skor.html" class="action-item ripple">
+                    <div class="action-icon bg-warning-light text-warning"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <span>Modal</span>
+                </a>
+                <a href="https://wa.me/6283806256111" class="action-item ripple">
+                    <div class="action-icon" style="background: #E8F9EE; color: #25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+                    <span>Bot WA</span>
+                </a>
+            </div>
+
+        </main>
+
+        <nav class="bottom-nav glass-nav">
+            <div class="nav-indicator"></div>
+            <a href="beranda.html" class="nav-item active"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+            <a href="transaksi.html" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>Transaksi</span></a>
+            <a href="insight.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i><span>Insight</span></a>
+            <a href="skor.html" class="nav-item"><i class="fa-solid fa-award"></i><span>Skor</span></a>
+            <a href="profil.html" class="nav-item"><i class="fa-solid fa-user-gear"></i><span>Profil</span></a>
+        </nav>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

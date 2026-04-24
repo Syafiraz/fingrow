@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi - FinGrow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="app-header glass-header header-centered">
+            <h2 class="font-bold">Pusat Transaksi</h2>
+        </header>
+        
+        <div class="tab-switcher" style="padding: 10px 24px; background: var(--surface-main);">
+            <div style="display: flex; background: #F2F4F7; border-radius: 12px; padding: 4px; width: 100%;">
+                <button class="tab-btn active" data-target="input" style="border-radius: 10px; border: none; padding: 10px;">Catat Baru</button>
+                <button class="tab-btn" data-target="riwayat" style="border-radius: 10px; border: none; padding: 10px;">Daftar Trx</button>
+                <button class="tab-btn" data-target="rekap" style="border-radius: 10px; border: none; padding: 10px;">Analisis</button>
+            </div>
+        </div>
+
+        <main class="content-area pt-2" id="trx-input-area">
+            
+            <div class="wa-integration-card mb-3 ripple" style="background: linear-gradient(135deg, #10B981 0%, #047857 100%); color: white; border: none; box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);">
+                <i class="fa-brands fa-whatsapp" style="font-size: 2.5rem;"></i>
+                <div>
+                    <h4 class="text-sm font-bold text-white">Catat Otomatis via Bot WA</h4>
+                    <p class="text-xs text-light-80 mt-1" style="line-height: 1.4;">Cukup ketik: <b>"QRIS 50000 Beras 5kg"</b>. Sistem akan mengklasifikasikan data otomatis.</p>
+                </div>
+            </div>
+
+            <form id="form-trx" class="card premium-shadow border-none">
+                
+                <div class="text-center mb-4">
+                    <p class="text-xs font-bold text-muted mb-2">NOMINAL TRANSAKSI</p>
+                    <div class="amount-input-wrapper" style="border-bottom: 2px solid var(--border-color); display: inline-flex; justify-content: center;">
+                        <span class="currency text-primary" style="font-size: 2rem;">Rp</span>
+                        <input type="number" id="input-nominal" class="input-giant text-center text-primary" placeholder="0" required style="width: auto; max-width: 200px; font-size: 3.5rem;">
+                    </div>
+                </div>
+                
+                <p class="text-xs font-bold text-muted mb-2">METODE PEMBAYARAN *</p>
+                <div class="segment-control mb-4">
+                    <input type="radio" id="method-qris" name="metode" value="QRIS" checked hidden>
+                    <label for="method-qris" class="segment-btn ripple flex-align flex-justify-center"><i class="fa-solid fa-qrcode text-lg"></i> <span>QRIS</span></label>
+                    
+                    <input type="radio" id="method-tunai" name="metode" value="Tunai" hidden>
+                    <label for="method-tunai" class="segment-btn ripple flex-align flex-justify-center"><i class="fa-solid fa-wallet text-lg"></i> <span>Tunai</span></label>
+                </div>
+
+                <div class="bg-surface-bg p-3" style="border-radius: 16px; border: 1px dashed var(--border-color); padding: 16px;">
+                    <div class="flex-between mb-2">
+                        <p class="text-xs font-bold text-muted"><i class="fa-solid fa-box-open text-primary"></i> DETAIL PRODUK</p>
+                        
+                    </div>
+                    <p class="text-xs text-muted mb-3">Data ini membantu AI memberikan insight barang terlaris.</p>
+                    
+                    <div class="flex-gap">
+                        <div class="input-box flex-2 p-0" style="padding: 0;">
+                            <input type="text" placeholder="Nama Produk (Misal: Gula)" style="padding: 12px; background: transparent;">
+                        </div>
+                        <div class="input-box flex-1 p-0" style="padding: 0;">
+                            <input type="number" placeholder="Jml" min="1" style="padding: 12px; background: transparent; text-align: center;">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-massive ripple mt-4" style="background: var(--brand-blue);">
+                    Simpan & Proses Data <i class="fa-solid fa-cloud-arrow-up ml-2"></i>
+                </button>
+            </form>
+        </main>
+
+        <main class="content-area pt-2 hidden" id="trx-riwayat-area">
+            
+            <div class="flex-gap mb-3">
+                <div class="input-box flex-2" style="padding: 10px 16px; border-radius: 20px;">
+                    <i class="fa-solid fa-magnifying-glass text-muted mr-2"></i>
+                    <input type="text" placeholder="Cari transaksi..." style="background: transparent;">
+                </div>
+                <button class="icon-btn bg-white border-color"><i class="fa-solid fa-filter text-muted"></i></button>
+            </div>
+
+            <div class="card p-0 overflow-hidden mb-3">
+                <div class="bg-surface-bg p-2 text-xs font-bold text-muted" style="padding: 8px 20px;">HARI INI - 24 APRIL 2026</div>
+                
+                <div class="trx-list-item ripple">
+                    <div class="trx-icon-box bg-qris"><i class="fa-solid fa-qrcode text-primary"></i></div>
+                    <div class="trx-info">
+                        <h4 class="font-bold text-sm">Beras Premium</h4>
+                        <p class="text-xs text-muted">10:45 WIB • 1 Item</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold text-primary">+Rp 65.000</div>
+                        <span class="text-xs font-bold text-success" style="font-size: 0.65rem;">QRIS</span>
+                    </div>
+                </div>
+
+                <div class="trx-list-item ripple">
+                    <div class="trx-icon-box bg-tunai"><i class="fa-solid fa-wallet text-warning"></i></div>
+                    <div class="trx-info">
+                        <h4 class="font-bold text-sm">Transaksi Umum</h4>
+                        <p class="text-xs text-muted">09:12 WIB • Tanpa Detail</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold text-primary">+Rp 36.000</div>
+                        <span class="text-xs font-bold text-warning" style="font-size: 0.65rem;">TUNAI</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-0 overflow-hidden">
+                <div class="bg-surface-bg p-2 text-xs font-bold text-muted" style="padding: 8px 20px;">KEMARIN - 23 APRIL 2026</div>
+                
+                <div class="trx-list-item ripple">
+                    <div class="trx-icon-box bg-qris"><i class="fa-solid fa-qrcode text-primary"></i></div>
+                    <div class="trx-info">
+                        <h4 class="font-bold text-sm">Grosir Sembako</h4>
+                        <p class="text-xs text-muted">16:30 WIB • 5 Item</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="font-bold text-primary">+Rp 450.000</div>
+                        <span class="text-xs font-bold text-success" style="font-size: 0.65rem;">QRIS</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <main class="content-area pt-2 hidden" id="trx-rekap-area">
+            
+            <div class="flex-gap mb-3">
+                <div class="card flex-1 p-3 text-center mb-0">
+                    <p class="text-xs font-bold text-muted">TOTAL TRX</p>
+                    <h3 class="text-primary mt-1">124</h3>
+                </div>
+                <div class="card flex-1 p-3 text-center mb-0">
+                    <p class="text-xs font-bold text-muted">RASIO QRIS</p>
+                    <h3 class="text-success mt-1">42%</h3>
+                </div>
+            </div>
+
+            <div class="card border-brand">
+                <div class="flex-between mb-4">
+                    <div>
+                        <h3 class="font-bold text-sm">Pola Pendapatan</h3>
+                        <p class="text-xs text-muted mt-1">Grafik untuk analisis fluktuasi</p>
+                    </div>
+                    <select class="minimal-select bg-brand-light text-primary font-bold" id="rekap-filter" onchange="updateRekapChart()" style="padding: 8px 12px;">
+                        <option value="harian">Harian</option>
+                        <option value="mingguan" selected>Mingguan</option>
+                        <option value="bulanan">Bulanan</option>
+                    </select>
+                </div>
+                
+                <div class="chart-container" style="height: 250px;">
+                    <canvas id="rekapChart"></canvas>
+                </div>
+            </div>
+
+            <div class="wa-integration-card mb-3 text-center d-block">
+                <p class="text-xs text-success-dark">AI FinGrow akan mengirim laporan PDF rekap ini secara otomatis via WhatsApp di akhir bulan.</p>
+            </div>
+        </main>
+
+        <nav class="bottom-nav glass-nav">
+            <div class="nav-indicator" style="transform: translateX(calc(30vw * 4.14 - 18px));"></div>
+            <a href="beranda.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+            <a href="transaksi.html" class="nav-item active"><i class="fa-solid fa-file-invoice-dollar"></i><span>Transaksi</span></a>
+            <a href="insight.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i><span>Insight</span></a>
+            <a href="skor.html" class="nav-item"><i class="fa-solid fa-award"></i><span>Skor</span></a>
+            <a href="profil.html" class="nav-item"><i class="fa-solid fa-user-gear"></i><span>Profil</span></a>
+        </nav>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    
+                    // Style the buttons (Segmented control UI)
+                    tabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.style.background = 'transparent';
+                        b.style.boxShadow = 'none';
+                        b.style.color = 'var(--text-secondary)';
+                    });
+                    this.classList.add('active');
+                    this.style.background = 'var(--surface-main)';
+                    this.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                    this.style.color = 'var(--text-primary)';
+
+                    // Show/Hide Sections
+                    document.getElementById('trx-input-area').classList.add('hidden');
+                    document.getElementById('trx-riwayat-area').classList.add('hidden');
+                    document.getElementById('trx-rekap-area').classList.add('hidden');
+
+                    document.getElementById(`trx-${target}-area`).classList.remove('hidden');
+
+                    // Panggil fungsi render chart dari app.js jika tab rekap dibuka
+                    if(target === 'rekap' && typeof updateRekapChart === 'function') {
+                        updateRekapChart();
+                    }
+                });
+            });
+
+            // Set active state for the first tab initially
+            const firstTab = document.querySelector('.tab-btn.active');
+            if(firstTab) {
+                firstTab.style.background = 'var(--surface-main)';
+                firstTab.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                firstTab.style.color = 'var(--text-primary)';
+            }
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

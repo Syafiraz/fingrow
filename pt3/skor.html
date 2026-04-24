@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skor & Pembiayaan - FinGrow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header glass-header header-centered">
+            <h2 class="font-bold">Skor & Pembiayaan</h2>
+        </header>
+        
+        <main class="content-area pt-2">
+            
+            <div class="card pt-4 pb-4 position-relative overflow-hidden ripple">
+                <div class="card-bg-shape" style="background: radial-gradient(circle, rgba(10, 76, 246, 0.05) 0%, rgba(255,255,255,0) 70%); right: 50%; transform: translateX(50%); top: -20px;"></div>
+                
+                <div class="text-center position-relative">
+                    <p class="text-muted text-sm font-bold mb-1"><i class="fa-solid fa-shield-halved text-success"></i> FinGrow Trust Score</p>
+                    
+                    <div style="position: relative; width: 160px; height: 160px; margin: 0 auto;">
+                        <svg viewBox="0 0 36 36" class="circular-chart primary" style="width: 100%; height: 100%;">
+                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke: #EBF1FF; stroke-width: 2.5; fill: none;" />
+                            <path class="circle" stroke-dasharray="72, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke: #0A4CF6; stroke-width: 2.5; stroke-linecap: round; fill: none; animation: fillProgress 1.5s ease-out forwards;" />
+                        </svg>
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                            <h1 class="text-giant text-primary mb-0" style="font-size: 3rem; letter-spacing: -1px;">720</h1>
+                            <span class="text-xs text-muted font-bold">/ 1000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chip-success mt-2" style="font-size: 0.85rem; padding: 6px 16px;"><i class="fa-solid fa-check-double"></i> Sangat Layak Kredit</div>
+                    <p class="text-xs text-muted mt-2">Diperbarui secara real-time berdasarkan aktivitas hari ini.</p>
+                </div>
+            </div>
+
+            <div class="card border-brand bg-brand-light ripple">
+                <h3 class="font-bold text-sm mb-3"><i class="fa-solid fa-microchip text-primary"></i> Detail Penilaian Algoritma</h3>
+                
+                <div class="progress-item mb-3">
+                    <div class="flex-between text-xs mb-1">
+                        <span><b>Konsistensi Transaksi</b></span>
+                        <strong class="text-success">92% (Sangat Baik)</strong>
+                    </div>
+                    <div class="progress-bar" style="height: 6px;"><div class="progress-fill bg-success" style="width: 92%;"></div></div>
+                    <p class="text-xs text-muted mt-1">Kamu rajin mencatat setiap hari tanpa jeda kosong.</p>
+                </div>
+
+                <div class="progress-item mb-3">
+                    <div class="flex-between text-xs mb-1">
+                        <span><b>Volume Usaha</b></span>
+                        <strong class="text-primary">85% (Tinggi)</strong>
+                    </div>
+                    <div class="progress-bar" style="height: 6px;"><div class="progress-fill bg-brand" style="width: 85%;"></div></div>
+                    <p class="text-xs text-muted mt-1">Jumlah nominal perputaran uang sangat sehat untuk skala mikro.</p>
+                </div>
+
+                <div class="progress-item mb-3">
+                    <div class="flex-between text-xs mb-1">
+                        <span><b>Stabilitas Pendapatan</b></span>
+                        <strong class="text-success">88% (Stabil)</strong>
+                    </div>
+                    <div class="progress-bar" style="height: 6px;"><div class="progress-fill bg-success" style="width: 88%;"></div></div>
+                    <p class="text-xs text-muted mt-1">Tidak ada fluktuasi pendapatan yang drastis/berisiko.</p>
+                </div>
+
+                <div class="progress-item mb-0">
+                    <div class="flex-between text-xs mb-1">
+                        <span><b>Proporsi Digital (QRIS)</b></span>
+                        <strong class="text-warning">42% (Perhatian)</strong>
+                    </div>
+                    <div class="progress-bar" style="height: 6px;"><div class="progress-fill bg-warning" style="width: 42%;"></div></div>
+                    <p class="text-xs text-warning mt-1"><i class="fa-solid fa-triangle-exclamation"></i> Syarat ideal bank minimal 60%.</p>
+                </div>
+            </div>
+
+            <div class="card ripple">
+                <h3 class="font-bold text-sm mb-3"><i class="fa-solid fa-arrow-up-right-dots text-primary"></i> Cara Naikkan Skor ke Grade S+</h3>
+                <ul class="custom-list text-sm mb-0">
+                    <li>
+                        <div class="icon-fixed text-success" style="width: 20px;"><i class="fa-solid fa-calendar-check"></i></div> 
+                        <div>
+                            <b>Pertahankan Rutinitas</b>
+                            <span class="d-block text-xs text-muted mt-1">Teruskan rekor mencatat 14 hari berturut-turut ini untuk membuktikan komitmen usahamu.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-fixed text-warning" style="width: 20px;"><i class="fa-solid fa-qrcode"></i></div> 
+                        <div>
+                            <b>Genjot Transaksi QRIS</b>
+                            <span class="d-block text-xs text-muted mt-1">Arahkan lebih banyak pelanggan bayar pakai QRIS minggu ini untuk mengejar rasio digital 60%.</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-fixed text-primary" style="width: 20px;"><i class="fa-solid fa-scale-balanced"></i></div> 
+                        <div>
+                            <b>Jaga Kestabilan Omzet</b>
+                            <span class="d-block text-xs text-muted mt-1">Usahakan pendapatan harian tidak turun di bawah batas rata-rata Rp 300.000 agar risiko kredit tetap rendah.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card premium-card ripple mb-4" style="background: linear-gradient(135deg, #0A4CF6 0%, #00C853 100%); border: none;">
+                <div class="card-bg-shape" style="background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);"></div>
+                
+                <div class="flex-between mb-3 position-relative">
+                    <h3 class="font-bold text-sm text-light-80"><i class="fa-solid fa-wallet"></i> Simulasi Pembiayaan</h3>
+                    <div class="chip-glass">Siap Diajukan</div>
+                </div>
+                
+                <div class="position-relative">
+                    <p class="text-xs text-light-80 mb-1">Estimasi Plafon Pinjaman Maksimal:</p>
+                    <h2 class="mb-1" style="font-size: 2.2rem; font-weight: 800; letter-spacing: -1px;">Rp 15.000.000</h2>
+                    
+                    <div class="flex-align mt-3 mb-4" style="background: rgba(0,0,0,0.15); padding: 10px; border-radius: 12px; backdrop-filter: blur(5px);">
+                        <i class="fa-solid fa-calendar-days text-light-80"></i>
+                        <div>
+                            <span class="text-xs text-light-80 d-block font-bold">Rekomendasi Tenor: 12 - 24 Bulan</span>
+                            <span class="text-xs text-light-50">Bunga kompetitif via Bank/Fintech Mitra</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#" class="btn-massive bg-white text-primary ripple position-relative" style="font-size: 0.95rem; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                    Ajukan Pembiayaan Sekarang <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <div class="text-center position-relative mt-3">
+                    <p class="text-xs text-light-80">Terintegrasi resmi dengan:</p>
+                    <div class="flex-align flex-justify-center mt-1" style="justify-content: center; gap: 15px; opacity: 0.9;">
+                        <span class="font-bold text-xs"><i class="fa-solid fa-building-columns"></i> Bank Himbara</span>
+                        <span class="font-bold text-xs"><i class="fa-solid fa-hand-holding-dollar"></i> KUR Mikro</span>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="bottom-nav glass-nav">
+            <div class="nav-indicator" style="transform: translateX(calc(70vw * 4.14 - 18px));"></div>
+            <a href="beranda.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+            <a href="transaksi.html" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>Transaksi</span></a>
+            <a href="insight.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i><span>Insight</span></a>
+            <a href="skor.html" class="nav-item active"><i class="fa-solid fa-award"></i><span>Skor</span></a>
+            <a href="profil.html" class="nav-item"><i class="fa-solid fa-user-gear"></i><span>Profil</span></a>
+        </nav>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - FinGrow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(16, 24, 40, 0.6); backdrop-filter: blur(6px);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .modal-card {
+            background: var(--surface-bg); width: 85%; max-width: 340px;
+            border-radius: 24px; padding: 24px; box-shadow: 0 24px 48px rgba(0,0,0,0.2);
+            transform: translateY(30px) scale(0.95); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .modal-overlay.active .modal-card { transform: translateY(0) scale(1); }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="app-header glass-header header-centered">
+            <h2 class="font-bold">Profil Usaha</h2>
+        </header>
+
+        <main class="content-area" style="padding-top: 32px;">
+            
+            <div class="card text-center ripple mb-4" style="padding: 32px 20px;">
+                <div class="avatar-glow mx-auto mb-3">
+                    <div class="avatar massive bg-gradient">SZ</div>
+                </div>
+                
+                <h2 class="font-bold text-lg mb-1 flex-align" style="justify-content: center;">
+                    Toko Sembako Berkah <i class="fa-solid fa-circle-check text-success" style="font-size: 1rem;" title="Merchant Terverifikasi"></i>
+                </h2>
+                
+                <div class="flex-align text-xs text-muted mb-3" style="justify-content: center; gap: 8px;">
+                    <span style="background: var(--brand-light); color: var(--brand-blue); padding: 4px 10px; border-radius: 12px; font-weight: 700;">Retail / Kelontong</span>
+                    <span><i class="fa-solid fa-location-dot"></i> Karawang, ID</span>
+                </div>
+
+                <div style="background: var(--surface-bg); padding: 16px; border-radius: 16px; border: 1px solid var(--border-color); text-align: left;">
+                    <div class="flex-between text-xs mb-2">
+                        <span class="font-bold">Kelengkapan Profil Merchant</span>
+                        <span class="font-bold text-success">100%</span>
+                    </div>
+                    <div class="progress-bar" style="height: 6px;">
+                        <div class="progress-fill bg-success" style="width: 100%;"></div>
+                    </div>
+                    <p class="text-xs text-muted mt-2 mb-0" style="font-size: 0.65rem;">Profil lengkap memaksimalkan akurasi algoritma Credit Scoring AI.</p>
+                </div>
+            </div>
+
+            <div class="section-header mb-2 mt-4">
+                <h3 class="font-bold text-sm text-muted">INTEGRASI DIGITAL</h3>
+            </div>
+            
+            <div class="card p-0 overflow-hidden mb-4">
+                <div class="menu-list-item ripple" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; background: var(--brand-light); color: var(--brand-blue);">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </div> 
+                        <div>
+                            <span class="text-sm font-bold d-block">Penerimaan QRIS</span>
+                            <span class="text-xs text-muted">NMID: ID1029384756</span>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: right;">
+                        <span class="text-xs text-success font-bold d-block mb-1"><i class="fa-solid fa-link"></i> Terhubung</span>
+                        <span class="text-xs font-bold text-primary" onclick="openQRIS()" style="cursor: pointer; padding: 4px 10px; background: var(--brand-light); border-radius: 8px;">Lihat QR <i class="fa-solid fa-expand ml-1"></i></span>
+                    </div>
+                </div>
+                
+                <div class="menu-list-item border-none" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <div style="width: 36px; height: 36px; border-radius: 10px; display: flex; justify-content: center; align-items: center; background: #E8F9EE; color: #25D366;">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div> 
+                        <div>
+                            <span class="text-sm font-bold d-block">Bot WhatsApp FinGrow</span>
+                            <span class="text-xs text-muted">Catat & pantau via chat</span>
+                        </div>
+                    </div>
+                    <div class="toggle-btn active" id="wa-toggle"></div>
+                </div>
+            </div>
+
+            <div class="section-header mb-2 mt-4">
+                <h3 class="font-bold text-sm text-muted">FINGROW ACADEMY</h3>
+            </div>
+            
+            <div class="card p-0 overflow-hidden mb-4">
+                <div class="border-bottom flex-between" style="padding: 16px 20px; background: var(--surface-main);">
+                    <p class="text-xs font-bold mb-0">MODUL EDUKASI UMKM</p>
+                    <i class="fa-solid fa-graduation-cap text-primary"></i>
+                </div>
+                
+                <div class="menu-list-item ripple" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <i class="fa-solid fa-book-journal-whills text-warning" style="font-size: 1.5rem; width: 30px; text-align: center;"></i>
+                        <div>
+                            <span class="text-sm font-bold d-block">Pentingnya Pencatatan Rutin</span>
+                            <span class="text-xs text-muted">Durasi baca: 3 mnt</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted text-xs"></i>
+                </div>
+                
+                <div class="menu-list-item border-none ripple" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <i class="fa-solid fa-mobile-screen-button text-primary" style="font-size: 1.5rem; width: 30px; text-align: center;"></i>
+                        <div>
+                            <span class="text-sm font-bold d-block">Maksimalkan Pembayaran Digital</span>
+                            <span class="text-xs text-muted">Durasi baca: 5 mnt</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted text-xs"></i>
+                </div>
+            </div>
+
+            <div class="section-header mb-2 mt-4">
+                <h3 class="font-bold text-sm text-muted">PREFERENSI & KEAMANAN</h3>
+            </div>
+
+            <div class="card p-0 overflow-hidden mb-4">
+                <div class="menu-list-item" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <i class="fa-solid fa-bell text-muted icon-fixed" style="width: 24px; text-align: center;"></i>
+                        <span class="text-sm font-bold">Notifikasi Transaksi Harian</span>
+                    </div>
+                    <div class="toggle-btn active"></div>
+                </div>
+
+                <div class="menu-list-item" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <i class="fa-solid fa-file-pdf text-muted icon-fixed" style="width: 24px; text-align: center;"></i>
+                        <span class="text-sm font-bold">Laporan Otomatis Bulanan</span>
+                    </div>
+                    <div class="toggle-btn active"></div>
+                </div>
+
+                <div class="menu-list-item border-none ripple" style="padding: 16px 20px;">
+                    <div class="flex-align">
+                        <i class="fa-solid fa-lock text-muted icon-fixed" style="width: 24px; text-align: center;"></i>
+                        <span class="text-sm font-bold">Ubah PIN Keamanan</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-muted text-xs"></i>
+                </div>
+            </div>
+
+            <button class="btn-massive ripple mb-4" onclick="logout()" style="background: #FFF0F0; color: #FF3B30; border: 1px solid #FFE0E0; font-size: 0.95rem; box-shadow: none; cursor: pointer; width: 100%; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Keluar Akun
+            </button>
+            
+            <p class="text-center text-xs text-muted mt-2 mb-4">FinGrow AI v1.0.0 (GenExpo Edition)<br>Dibuat dengan ❤️ di Karawang</p>
+
+        </main>
+
+        <div id="qris-modal" class="modal-overlay">
+            <div class="modal-card">
+                <div class="flex-between mb-3 border-bottom pb-2">
+                    <h3 class="font-bold text-sm">QRIS Usaha</h3>
+                    <button class="icon-btn ripple" onclick="closeQRIS()" style="width: 32px; height: 32px; font-size: 1rem; background: #FFF0F0; color: #FF3B30; border: none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <p class="text-xs text-muted mb-3">Tunjukkan QR ini kepada pelanggan untuk menerima pembayaran.</p>
+                    
+                    <div style="background: white; padding: 16px; border-radius: 16px; display: inline-block; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid var(--border-color);">
+                        <img src="../img/qris.jpg" alt="QRIS Code" style="width: 200px; height: 200px; object-fit: contain;">
+                    </div>
+                    
+                    <h2 class="font-bold text-md mt-4">Toko Sembako Berkah</h2>
+                    <p class="text-xs font-bold text-primary mt-1">NMID: ID1029384756</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav glass-nav">
+            <div class="nav-indicator" style="transform: translateX(calc(90vw * 4.14 - 18px));"></div>
+            <a href="beranda.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+            <a href="transaksi.html" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>Transaksi</span></a>
+            <a href="insight.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i><span>Insight</span></a>
+            <a href="skor.html" class="nav-item"><i class="fa-solid fa-award"></i><span>Skor</span></a>
+            <a href="profil.html" class="nav-item active"><i class="fa-solid fa-user-gear"></i><span>Profil</span></a>
+        </nav>
+    </div>
+
+    <script>
+        // Fungsi Buka & Tutup QRIS
+        function openQRIS() {
+            document.getElementById('qris-modal').classList.add('active');
+        }
+        function closeQRIS() {
+            document.getElementById('qris-modal').classList.remove('active');
+        }
+
+        // Fungsi Toggle Button
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggles = document.querySelectorAll('.toggle-btn');
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        });
+        
+        // Fungsi Logout
+        function logout() {
+            if(confirm("Apakah Anda yakin ingin keluar?")) {
+                localStorage.removeItem('fingrow_data');
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insight AI - FinGrow AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="app-header glass-header header-centered">
+            <h2 class="font-bold">Intelligence Insight</h2>
+        </header>
+
+        <main class="content-area" style="padding-top: 32px;">
+            
+            <div class="section-header mb-2">
+                <h3 class="font-bold text-sm text-muted">RINGKASAN PERFORMA AI</h3>
+            </div>
+            
+            <div class="insight-grid-complex mb-3">
+                <div class="card insight-card-premium ripple" style="padding: 16px !important; margin-bottom: 0;">
+                    <div class="flex-between">
+                        <div class="icon-circle bg-success-light text-success"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="badge bg-success-light text-success">+15.4%</span>
+                    </div>
+                    <h4 class="mt-2 font-bold text-sm">Tren Omzet</h4>
+                    <p class="text-xs text-muted mt-1">Pendapatan naik signifikan dalam 7 hari terakhir.</p>
+                </div>
+
+                <div class="card insight-card-premium ripple" style="padding: 16px !important; margin-bottom: 0;">
+                    <div class="flex-between">
+                        <div class="icon-circle bg-primary-light text-primary"><i class="fa-solid fa-calendar-check"></i></div>
+                        <span class="badge bg-primary-light text-primary">Stabil</span>
+                    </div>
+                    <h4 class="mt-2 font-bold text-sm">Konsistensi</h4>
+                    <p class="text-xs text-muted mt-1">14 hari berturut-turut aktif mencatat transaksi.</p>
+                </div>
+            </div>
+
+            <div class="card mb-3 border-none shadow-sm" style="padding: 16px 20px;">
+                <div class="flex-between mb-2">
+                    <div>
+                        <h3 class="font-bold text-sm">Pola Aktivitas Teramai</h3>
+                        <p class="text-xs text-muted">Estimasi jam operasional paling sibuk</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-bold text-primary">08:00 - 10:00</span>
+                        <p class="text-muted" style="font-size: 0.6rem;">WAKTU PUNCAK</p>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 140px;">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+
+            <div class="section-header mb-2 mt-3">
+                <h3 class="font-bold text-sm text-muted">STRATEGI & REKOMENDASI</h3>
+            </div>
+            
+            <div class="card bg-brand-light border-brand ripple mb-3" style="padding: 16px 20px;">
+                <div class="flex-align mb-3">
+                    <div class="ai-pulse-icon" style="width: 28px; height: 28px; font-size: 0.8rem;"><i class="fa-solid fa-robot"></i></div>
+                    <h4 class="text-sm font-bold text-primary">Saran FinGrow AI</h4>
+                </div>
+                
+                <div class="recommendation-list" style="gap: 12px;">
+                    <div class="rec-item">
+                        <div class="rec-status-dot bg-success"></div>
+                        <div class="rec-content">
+                            <p class="text-sm"><b>Jaga Stabilitas Transaksi</b></p>
+                            <p class="text-xs text-muted">Omzet hari Selasa cenderung turun 20%. Coba tawarkan promo khusus pelanggan setia di hari tersebut.</p>
+                        </div>
+                    </div>
+                    <div class="rec-item">
+                        <div class="rec-status-dot bg-warning"></div>
+                        <div class="rec-content">
+                            <p class="text-sm"><b>Tingkatkan Pembayaran Digital</b></p>
+                            <p class="text-xs text-muted">Gunakan QRIS untuk transaksi di atas Rp 50.000 agar verifikasi skor kredit bank lebih cepat.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header mb-2 mt-3">
+                <h3 class="font-bold text-sm text-muted">PERFORMA PRODUK (OPSIONAL)</h3>
+            </div>
+            
+            <div class="card p-0 overflow-hidden mb-3">
+                <div class="border-bottom flex-between" style="padding: 12px 20px; background: var(--surface-main);">
+                    <p class="text-xs font-bold mb-0">PRODUK TERLARIS MINGGU INI</p>
+                    <i class="fa-solid fa-crown text-warning"></i>
+                </div>
+                
+                <div class="product-leaderboard">
+                    <div class="product-item-complex" style="padding: 12px 20px;">
+                        <div class="prod-rank">01</div>
+                        <div class="prod-info">
+                            <p class="text-sm font-bold">Beras Premium 5Kg</p>
+                            <div class="progress-bar mt-1" style="height: 4px; width: 80%;"><div class="progress-fill bg-success" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="prod-stat" style="text-align: right;">
+                            <span class="text-sm font-bold d-block">32</span>
+                            <p class="text-muted mb-0" style="font-size: 0.6rem;">PCS</p>
+                        </div>
+                    </div>
+                    <div class="product-item-complex" style="padding: 12px 20px;">
+                        <div class="prod-rank">02</div>
+                        <div class="prod-info">
+                            <p class="text-sm font-bold">Minyak Goreng 2L</p>
+                            <div class="progress-bar mt-1" style="height: 4px; width: 60%;"><div class="progress-fill bg-brand" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="prod-stat" style="text-align: right;">
+                            <span class="text-sm font-bold d-block">18</span>
+                            <p class="text-muted mb-0" style="font-size: 0.6rem;">PCS</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center bg-surface-bg" style="padding: 12px 20px;">
+                    <p class="text-xs text-muted mb-0">AI menyarankan restok <b>Beras Premium</b> 2 hari lagi.</p>
+                </div>
+            </div>
+
+            <div class="wa-floating-card ripple mb-2" onclick="location.href='https://wa.me/6283806256111'" style="padding: 12px 20px;">
+                <div class="wa-icon-glow" style="font-size: 1.5rem;"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="wa-text">
+                    <p class="text-sm font-bold">Tanya AI via WhatsApp</p>
+                    <p class="text-xs mb-0">Ketik <b>"Cek Insight"</b> untuk laporan instan.</p>
+                </div>
+                <i class="fa-solid fa-chevron-right text-xs"></i>
+            </div>
+
+        </main>
+        
+
+        <nav class="bottom-nav glass-nav">
+            <div class="nav-indicator" style="transform: translateX(calc(50vw * 4.14 - 18px));"></div>
+            <a href="beranda.html" class="nav-item"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+            <a href="transaksi.html" class="nav-item"><i class="fa-solid fa-file-invoice-dollar"></i><span>Transaksi</span></a>
+            <a href="insight.html" class="nav-item active"><i class="fa-solid fa-chart-pie"></i><span>Insight</span></a>
+            <a href="skor.html" class="nav-item"><i class="fa-solid fa-award"></i><span>Skor</span></a>
+            <a href="profil.html" class="nav-item"><i class="fa-solid fa-user-gear"></i><span>Profil</span></a>
+        </nav>
+    </div>
+
+    <script>
+        // Logika Chart Aktivitas (Hourly Activity Pattern)
+        document.addEventListener("DOMContentLoaded", () => {
+            const ctx = document.getElementById('activityChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'],
+                    datasets: [{
+                        data: [10, 45, 35, 15, 20, 30, 55, 25],
+                        borderColor: '#0A4CF6',
+                        backgroundColor: 'rgba(10, 76, 246, 0.1)',
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { 
+                        y: { display: false },
+                        x: { grid: { display: false }, ticks: { font: { size: 9 } } }
+                    },
+                    maintainAspectRatio: false
+                }
+            });
+        });
+    </script>
+    <script src="js/app.js"></script>
+</body>
+</html>

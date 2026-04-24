@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinGrow AI - Registrasi UMKM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: var(--surface-main);">
+    <div class="app-container" style="background: var(--surface-main); display: flex; flex-direction: column; justify-content: center; padding: 24px;">
+        
+        <div class="text-center mb-4" style="margin-top: 40px;">
+            <div class="avatar-glow mx-auto mb-3" style="width: 80px; height: 80px;">
+                <div class="avatar bg-gradient" style="width: 100%; height: 100%; font-size: 2rem;"><i class="fa-solid fa-leaf"></i></div>
+            </div>
+            <h1 class="text-giant text-primary" style="font-size: 2.2rem; letter-spacing: -1px;">FinGrow AI</h1>
+            <p class="text-muted text-sm mt-1">Solusi Pencatatan & Credit Scoring UMKM</p>
+        </div>
+
+        <form id="form-register" class="mt-2">
+            <h3 class="font-bold text-md mb-3">Daftar Usaha Baru</h3>
+            
+            <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden;">
+                <div class="flex-align" style="padding: 14px 16px;">
+                    <i class="fa-brands fa-whatsapp text-success" style="font-size: 1.2rem; width: 24px;"></i>
+                    <input type="tel" id="reg-wa" placeholder="Nomor WhatsApp" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
+                </div>
+            </div>
+
+            <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden;">
+                <div class="flex-align" style="padding: 14px 16px;">
+                    <i class="fa-solid fa-store text-muted" style="font-size: 1.2rem; width: 24px;"></i>
+                    <input type="text" id="reg-nama" placeholder="Nama Usaha (Misal: Warung Ibu Ani)" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
+                </div>
+            </div>
+
+            <div class="flex-gap mb-4">
+                <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="flex-align" style="padding: 14px 16px;">
+                        <i class="fa-solid fa-tag text-muted" style="width: 20px;"></i>
+                        <select id="reg-jenis" required style="width: 100%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.9rem; color: var(--text-primary);">
+                            <option value="" disabled selected>Jenis Usaha</option>
+                            <option value="Kelontong/Sembako">Sembako</option>
+                            <option value="Kuliner/Makanan">Kuliner</option>
+                            <option value="Jasa">Jasa</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden;">
+                    <div class="flex-align" style="padding: 14px 16px;">
+                        <i class="fa-solid fa-location-dot text-muted" style="width: 20px;"></i>
+                        <input type="text" id="reg-lokasi" placeholder="Kota" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-massive ripple mt-2">
+                Masuk ke Beranda <i class="fa-solid fa-arrow-right ml-2"></i>
+            </button>
+            <p class="text-center text-xs text-muted mt-3">Dengan mendaftar, AI kami siap membantu usahamu tumbuh.</p>
+        </form>
+
+    </div>
+
+    <script>
+        document.getElementById('form-register').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyiapkan AI...';
+            btn.style.opacity = '0.8';
+
+            // Ambil data input
+            const namaUsaha = document.getElementById('reg-nama').value;
+            const jenisUsaha = document.getElementById('reg-jenis').value;
+            const lokasi = document.getElementById('reg-lokasi').value;
+
+            // Simpan ke Local Storage (Simulasi Database)
+            const userData = {
+                nama: namaUsaha,
+                jenis: jenisUsaha,
+                lokasi: lokasi,
+                // Beri modal awal untuk simulasi presentasi
+                totalSaldo: 0, 
+                jumlahTrx: 0,
+                riwayat: [],
+                daysActive: 1, // Hari pertama
+                targetQris: 60
+            };
+            
+            localStorage.setItem('fingrow_data', JSON.stringify(userData));
+
+            // Redirect ke Beranda (Langkah 2)
+            setTimeout(() => {
+                window.location.href = "beranda.html";
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
