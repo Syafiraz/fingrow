@@ -3,101 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinGrow AI - Registrasi UMKM</title>
+    <title>Selamat Datang di FinGrow AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #0A4CF6 0%, #417BFF 100%);
+            --accent-green: #12B76A;
+        }
+
+        .onboarding-wrapper {
+            height: 100vh;
+            background: #f8faff;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Elemen Dekoratif Background */
+        .bg-blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--primary-gradient);
+            filter: blur(80px);
+            opacity: 0.15;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Konten Utama */
+        .step-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 24px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .step-content {
+            display: none;
+            animation: fadeInScale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .step-content.active { display: block; }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Ilustrasi & Ikon */
+        .icon-box {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3.5rem;
+            color: #0A4CF6;
+            margin: 0 auto 40px;
+            box-shadow: 0 20px 40px rgba(10, 76, 246, 0.15);
+            position: relative;
+        }
+
+        .icon-box::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--primary-gradient);
+            border-radius: 32px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Tipografi */
+        .step-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #101828;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .step-desc {
+            font-size: 1rem;
+            color: #667085;
+            line-height: 1.6;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Footer Navigasi */
+        .onboarding-footer {
+            padding: 32px 24px 48px;
+            background: white;
+            border-radius: 40px 40px 0 0;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.03);
+            z-index: 20;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: #E4E7EC;
+            transition: all 0.4s ease;
+        }
+
+        .dot.active {
+            width: 32px;
+            background: #0A4CF6;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-main {
+            flex: 2;
+            padding: 18px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 18px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(10, 76, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:active { transform: scale(0.96); }
+
+        .btn-secondary {
+            flex: 1;
+            padding: 18px;
+            background: #F2F4F7;
+            color: #667085;
+            border: none;
+            border-radius: 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .skip-text {
+            position: absolute;
+            top: 60px;
+            right: 24px;
+            color: #667085;
+            font-weight: 700;
+            text-decoration: none;
+            z-index: 30;
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-<body style="background: var(--surface-main);">
-    <div class="app-container" style="background: var(--surface-main); display: flex; flex-direction: column; justify-content: center; padding: 24px;">
-        
-        <div class="text-center mb-4" style="margin-top: 40px;">
-            <div class="avatar-glow mx-auto mb-3" style="width: 80px; height: 80px;">
-                <div class="avatar bg-gradient" style="width: 100%; height: 100%; font-size: 2rem;"><i class="fa-solid fa-leaf"></i></div>
+<body>
+    <div class="app-container onboarding-wrapper">
+        <div class="bg-blob" style="top: -50px; left: -50px;"></div>
+        <div class="bg-blob" style="bottom: 200px; right: -100px;"></div>
+
+        <a href="indexx.html" class="skip-text" id="skip-link">Lewati</a>
+
+        <div class="step-container" style="margin-top: 2.5cm;">
+            <div class="step-content active" id="step-1">
+                <div class="icon-box">
+                    <i class="fa-solid fa-wallet"></i>
+                </div>
+                <h2 class="step-title">Catat Transaksi <br><span style="color: #0A4CF6;">Anti Ribet</span></h2>
+                <p class="step-desc" style="margin-bottom: 1.5cm;">Kelola keuangan warung sembako Anda secara digital. Aman, cepat, dan otomatis tersusun rapi.</p>
             </div>
-            <h1 class="text-giant text-primary" style="font-size: 2.2rem; letter-spacing: -1px;">FinGrow AI</h1>
-            <p class="text-muted text-sm mt-1">Solusi Pencatatan & Credit Scoring UMKM</p>
+
+            <div class="step-content" id="step-2">
+                <div class="icon-box" style="color: #12B76A;">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h2 class="step-title">Bangun Skor <br><span style="color: #12B76A;">Kredit Digital</span></h2>
+                <p class="step-desc" style="margin-bottom: 1.5cm;">Setiap catatan transaksi Anda dianalisis oleh AI untuk meningkatkan peluang mendapatkan modal usaha.</p>
+            </div>
+
+            <div class="step-content" id="step-3">
+                <div class="icon-box" style="color: #F79009;">
+                    <i class="fa-solid fa-rocket"></i>
+                </div>
+                <h2 class="step-title">Akses Modal <br><span style="color: #F79009;">Naik Kelas</span></h2>
+                <p class="step-desc" style="margin-bottom: 1.5cm;">Ajukan pembiayaan KUR langsung dari aplikasi berdasarkan kesehatan keuangan usaha Anda.</p>
+            </div>
         </div>
 
-        <form id="form-register" class="mt-2">
-            <h3 class="font-bold text-md mb-3">Daftar Usaha Baru</h3>
-            
-            <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden;">
-                <div class="flex-align" style="padding: 14px 16px;">
-                    <i class="fa-brands fa-whatsapp text-success" style="font-size: 1.2rem; width: 24px;"></i>
-                    <input type="tel" id="reg-wa" placeholder="Nomor WhatsApp" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
-                </div>
+        <div class="onboarding-footer">
+            <div class="dots-container">
+                <div class="dot active" id="dot-1"></div>
+                <div class="dot" id="dot-2"></div>
+                <div class="dot" id="dot-3"></div>
             </div>
 
-            <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden;">
-                <div class="flex-align" style="padding: 14px 16px;">
-                    <i class="fa-solid fa-store text-muted" style="font-size: 1.2rem; width: 24px;"></i>
-                    <input type="text" id="reg-nama" placeholder="Nama Usaha (Misal: Warung Ibu Ani)" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
-                </div>
+            <div class="nav-actions">
+                <button class="btn-secondary" id="back-btn" onclick="prevStep()" style="display: none;">Kembali</button>
+                <button class="btn-main" id="next-btn" onclick="nextStep()">Lanjutkan</button>
             </div>
-
-            <div class="flex-gap mb-4">
-                <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden;">
-                    <div class="flex-align" style="padding: 14px 16px;">
-                        <i class="fa-solid fa-tag text-muted" style="width: 20px;"></i>
-                        <select id="reg-jenis" required style="width: 100%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.9rem; color: var(--text-primary);">
-                            <option value="" disabled selected>Jenis Usaha</option>
-                            <option value="Kelontong/Sembako">Sembako</option>
-                            <option value="Kuliner/Makanan">Kuliner</option>
-                            <option value="Jasa">Jasa</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden;">
-                    <div class="flex-align" style="padding: 14px 16px;">
-                        <i class="fa-solid fa-location-dot text-muted" style="width: 20px;"></i>
-                        <input type="text" id="reg-lokasi" placeholder="Kota" required style="font-size: 0.95rem; width: 100%; border: none; outline: none;">
-                    </div>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-massive ripple mt-2">
-                Masuk ke Beranda <i class="fa-solid fa-arrow-right ml-2"></i>
-            </button>
-            <p class="text-center text-xs text-muted mt-3">Dengan mendaftar, AI kami siap membantu usahamu tumbuh.</p>
-        </form>
-
+        </div>
     </div>
 
     <script>
-        document.getElementById('form-register').addEventListener('submit', function(e) {
-            e.preventDefault();
+        let currentStep = 1;
+        const totalSteps = 3;
+
+        function updateUI() {
+            // Update Screens
+            document.querySelectorAll('.step-content').forEach((el, idx) => {
+                el.classList.toggle('active', (idx + 1) === currentStep);
+            });
+
+            // Update Dots
+            document.querySelectorAll('.dot').forEach((el, idx) => {
+                el.classList.toggle('active', (idx + 1) === currentStep);
+            });
+
+            // Update Buttons
+            const backBtn = document.getElementById('back-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const skipLink = document.getElementById('skip-link');
+
+            backBtn.style.display = (currentStep === 1) ? 'none' : 'block';
             
-            const btn = this.querySelector('button');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyiapkan AI...';
-            btn.style.opacity = '0.8';
+            if (currentStep === totalSteps) {
+                nextBtn.innerText = 'Daftar Sekarang';
+                skipLink.style.display = 'none';
+            } else {
+                nextBtn.innerText = 'Lanjutkan';
+                skipLink.style.display = 'block';
+            }
+        }
 
-            // Ambil data input
-            const namaUsaha = document.getElementById('reg-nama').value;
-            const jenisUsaha = document.getElementById('reg-jenis').value;
-            const lokasi = document.getElementById('reg-lokasi').value;
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            } else {
+                window.location.href = 'indexx.html';
+            }
+        }
 
-            // Simpan ke Local Storage (Simulasi Database)
-            const userData = {
-                nama: namaUsaha,
-                jenis: jenisUsaha,
-                lokasi: lokasi,
-                // Beri modal awal untuk simulasi presentasi
-                totalSaldo: 0, 
-                jumlahTrx: 0,
-                riwayat: [],
-                daysActive: 1, // Hari pertama
-                targetQris: 60
-            };
-            
-            localStorage.setItem('fingrow_data', JSON.stringify(userData));
-
-            // Redirect ke Beranda (Langkah 2)
-            setTimeout(() => {
-                window.location.href = "beranda.html";
-            }, 1000);
-        });
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
     </script>
 </body>
 </html>

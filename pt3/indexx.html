@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinGrow AI - Registrasi UMKM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* CSS PENGATUR LAYAR (WAJIB ADA AGAR TIDAK NUMPUK) */
+        .screen { display: none; animation: fadeIn 0.4s ease forwards; }
+        .screen.active { display: block; }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateX(20px); } 
+            to { opacity: 1; transform: translateX(0); } 
+        }
+        
+        /* CSS OTP PREMIUM */
+        .otp-container { display: flex; justify-content: space-between; gap: 12px; margin: 40px 0; }
+        .otp-input { 
+            width: 68px; height: 76px; text-align: center; font-size: 2.2rem; font-weight: 800; 
+            border-radius: 20px; border: 2px solid #E4E7EC; background: #F9FAFB; 
+            outline: none; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); color: #101828; 
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .otp-input:focus { 
+            border-color: #0A4CF6; background: #ffffff; 
+            box-shadow: 0 12px 24px rgba(10, 76, 246, 0.15), 0 0 0 4px rgba(10, 76, 246, 0.1); 
+            transform: translateY(-4px); 
+        }
+        
+        /* HILANGKAN PANAH BAWAAN HTML PADA INPUT NUMBER */
+        .otp-input::-webkit-inner-spin-button, 
+        .otp-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        .otp-input[type=number] { -moz-appearance: textfield; }
+
+        /* STRUKTUR LAYAR OTP FULL SCREEN */
+        .screen-otp-layout {
+            display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between; padding: 24px;
+        }
+    </style>
+</head>
+<body style="background: var(--surface-main, #F9FAFB); margin: 0;">
+    <div class="app-container" style="background: var(--surface-main, #F9FAFB); min-height: 100vh; position: relative;">
+        
+        <div id="screen-register" class="screen active">
+            <div style="padding: 24px; display: flex; flex-direction: column; justify-content: center; min-height: 100vh;">
+                
+                <div class="text-center mb-4">
+                    <div class="avatar-glow mx-auto mb-3" style="width: 80px; height: 80px; margin: 0 auto;">
+                        <div class="avatar bg-gradient" style="width: 100%; height: 100%; font-size: 2rem; display: flex; justify-content: center; align-items: center; border-radius: 50%; background: linear-gradient(135deg, #0A4CF6, #417BFF); color: white;"><i class="fa-solid fa-leaf"></i></div>
+                    </div>
+                    <h1 class="text-giant text-primary" style="font-size: 2.2rem; letter-spacing: -1px; color: #0A4CF6; font-weight: 800; margin-bottom: 4px;">FinGrow AI</h1>
+                    <p class="text-muted text-sm mt-1" style="color: #667085;">Solusi Pencatatan & Credit Scoring UMKM</p>
+                </div>
+
+                <form id="form-register" class="mt-2">
+                    <h3 class="font-bold text-md mb-3" style="font-weight: 700; margin-bottom: 16px;">Daftar Usaha Baru</h3>
+                    
+                    <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden; border: 1px solid #E4E7EC; background: white; margin-bottom: 16px;">
+                        <div class="flex-align" style="padding: 14px 16px; display: flex; align-items: center;">
+                            <i class="fa-brands fa-whatsapp text-success" style="font-size: 1.2rem; width: 24px; color: #12B76A; margin-right: 12px;"></i>
+                            <input type="tel" id="reg-wa" placeholder="Nomor WhatsApp" required style="font-size: 0.95rem; width: 100%; border: none; outline: none; font-family: inherit;">
+                        </div>
+                    </div>
+
+                    <div class="input-box mb-3 p-0" style="border-radius: 12px; overflow: hidden; border: 1px solid #E4E7EC; background: white; margin-bottom: 16px;">
+                        <div class="flex-align" style="padding: 14px 16px; display: flex; align-items: center;">
+                            <i class="fa-solid fa-store text-muted" style="font-size: 1.2rem; width: 24px; color: #667085; margin-right: 12px;"></i>
+                            <input type="text" id="reg-nama" placeholder="Nama Usaha (Misal: Warung Ibu Ani)" required style="font-size: 0.95rem; width: 100%; border: none; outline: none; font-family: inherit;">
+                        </div>
+                    </div>
+
+                    <div class="flex-gap mb-4" style="display: flex; gap: 12px; margin-bottom: 24px;">
+                        <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden; border: 1px solid #E4E7EC; background: white; flex: 1;">
+                            <div class="flex-align" style="padding: 14px 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-tag text-muted" style="width: 20px; color: #667085; margin-right: 8px;"></i>
+                                <select id="reg-jenis" required style="width: 100%; border: none; outline: none; background: transparent; font-family: inherit; font-size: 0.9rem; color: #101828;">
+                                    <option value="" disabled selected>Jenis Usaha</option>
+                                    <option value="Kelontong/Sembako">Sembako</option>
+                                    <option value="Kuliner/Makanan">Kuliner</option>
+                                    <option value="Jasa">Jasa</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-box flex-1 p-0" style="border-radius: 12px; overflow: hidden; border: 1px solid #E4E7EC; background: white; flex: 1;">
+                            <div class="flex-align" style="padding: 14px 16px; display: flex; align-items: center;">
+                                <i class="fa-solid fa-location-dot text-muted" style="width: 20px; color: #667085; margin-right: 8px;"></i>
+                                <input type="text" id="reg-lokasi" placeholder="Kota" required style="font-size: 0.95rem; width: 100%; border: none; outline: none; font-family: inherit;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-massive ripple mt-2" style="width: 100%; padding: 16px; background: #0A4CF6; color: white; border: none; border-radius: 16px; font-weight: 800; font-size: 1rem; cursor: pointer; display: flex; justify-content: center; align-items: center;">
+                        Masuk ke Beranda <i class="fa-solid fa-arrow-right ml-2" style="margin-left: 8px;"></i>
+                    </button>
+                    <p class="text-center text-xs text-muted mt-3" style="text-align: center; color: #667085; font-size: 0.75rem; margin-top: 16px;">Dengan mendaftar, AI kami siap membantu usahamu tumbuh.</p>
+                </form>
+            </div>
+        </div>
+
+        <div id="screen-otp" class="screen">
+            <div style="padding: 24px; display: flex; flex-direction: column; min-height: 100vh;">
+                
+                <div style="margin-bottom: 24px; padding-top: 10px;">
+                    <button type="button" onclick="kembaliRegister()" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E4E7EC; background: white; display: flex; justify-content: center; align-items: center; cursor: pointer; color: #101828; box-shadow: 0 4px 12px rgba(0,0,0,0.03); transition: all 0.2s;">
+                        <i class="fa-solid fa-arrow-left" style="font-size: 1.1rem;"></i>
+                    </button>
+                </div>
+
+                <div style="display: flex; flex-direction: column;">
+                    
+                    <div style="width: 72px; height: 72px; background: #F4F7FF; border-radius: 24px; display: flex; justify-content: center; align-items: center; margin-bottom: 24px; margin-top: 36px; border: 1px solid #D0DFFF;">
+                        <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: #0A4CF6;"></i>
+                    </div>
+                    
+                    <h1 class="font-bold" style="font-size: 2.2rem; color: #101828; margin-bottom: 12px; line-height: 1.1; font-weight: 800;">Verifikasi <br>Keamanan</h1>
+                    <p class="text-muted" style="font-size: 1rem; line-height: 1.6; color: #667085;">Kode 4 digit telah dikirimkan ke WhatsApp <br><strong style="color: #0A4CF6; font-size: 1.1rem; letter-spacing: 0.5px; display: inline-block; margin-top: 4px;" id="tampil-nomor">+62 xxx</strong></p>
+
+                    <div class="otp-container" style="display: flex; justify-content: space-between; gap: 12px; margin: 32px 0 24px;">
+                        <input type="number" id="otp1" class="otp-input" maxlength="1" onkeyup="pindahFokus(event, this, 'otp2', null)">
+                        <input type="number" id="otp2" class="otp-input" maxlength="1" onkeyup="pindahFokus(event, this, 'otp3', 'otp1')">
+                        <input type="number" id="otp3" class="otp-input" maxlength="1" onkeyup="pindahFokus(event, this, 'otp4', 'otp2')">
+                        <input type="number" id="otp4" class="otp-input" maxlength="1" onkeyup="cekOTP(event, this, 'otp3')">
+                    </div>
+
+                    <p class="text-muted" style="font-size: 0.95rem; color: #667085; margin-bottom: 32px;">Belum menerima kode? <span style="font-weight: 800; color: #0A4CF6; cursor: pointer;">Kirim ulang (00:59)</span></p>
+
+                    <button type="button" onclick="masukBeranda()" class="btn-massive ripple" style="width: 100%; padding: 20px; border-radius: 20px; font-size: 1.15rem; background: #0A4CF6; color: white; border: none; font-weight: 800; box-shadow: 0 16px 32px rgba(10, 76, 246, 0.25); cursor: pointer;">
+                        Verifikasi & Masuk
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Logika saat tombol Daftar ditekan
+        document.getElementById('form-register').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Menyiapkan AI...';
+            btn.style.opacity = '0.8';
+
+            // Ambil data input
+            const waInput = document.getElementById('reg-wa').value;
+            const namaUsaha = document.getElementById('reg-nama').value;
+            const jenisUsaha = document.getElementById('reg-jenis').value;
+            const lokasi = document.getElementById('reg-lokasi').value;
+
+            // Simpan ke Local Storage
+            const userData = {
+                nama: namaUsaha,
+                jenis: jenisUsaha,
+                lokasi: lokasi,
+                totalSaldo: 0, 
+                jumlahTrx: 0,
+                riwayat: [],
+                daysActive: 1, 
+                targetQris: 60
+            };
+            localStorage.setItem('fingrow_data', JSON.stringify(userData));
+
+            // Beralih ke layar OTP
+            setTimeout(() => {
+                // Kembalikan teks tombol
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+
+                // Tampilkan nomor WA di layar OTP
+                document.getElementById('tampil-nomor').innerText = "+62 " + waInput;
+
+                // Sembunyikan layar form, tampilkan layar OTP
+                document.getElementById('screen-register').classList.remove('active');
+                document.getElementById('screen-otp').classList.add('active');
+                
+                // Otomatis fokus ke kotak OTP pertama
+                document.getElementById('otp1').focus();
+            }, 800);
+        });
+
+        // FUNGSI LAYAR OTP
+        function kembaliRegister() {
+            // Sembunyikan layar OTP, tampilkan kembali layar form
+            document.getElementById('screen-otp').classList.remove('active');
+            document.getElementById('screen-register').classList.add('active');
+            
+            // Bersihkan kotak OTP yang sudah terisi
+            document.querySelectorAll('.otp-input').forEach(input => input.value = '');
+        }
+
+        // Pindah fokus antar kotak OTP
+        function pindahFokus(e, element, nextEleId, prevEleId) {
+            if (e.key === "Backspace") {
+                element.value = '';
+                if(prevEleId) document.getElementById(prevEleId).focus();
+                return;
+            }
+            if(element.value.length >= 1) {
+                element.value = element.value.slice(0,1);
+                if(nextEleId) document.getElementById(nextEleId).focus();
+            }
+        }
+
+        // Cek jika kotak ke-4 terisi
+        function cekOTP(e, element, prevEleId) {
+            if (e.key === "Backspace") {
+                element.value = '';
+                if(prevEleId) document.getElementById(prevEleId).focus();
+                return;
+            }
+            if(element.value.length >= 1) {
+                element.value = element.value.slice(0,1);
+                setTimeout(() => { masukBeranda(); }, 400); // Otomatis jalan
+            }
+        }
+
+        function masukBeranda() {
+            window.location.href = "beranda.html";
+        }
+    </script>
+</body>
+</html>
